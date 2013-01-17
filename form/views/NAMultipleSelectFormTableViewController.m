@@ -16,8 +16,8 @@
 
 #pragma mark - Table view data source
 
-- (void)initialize{
-    [super initialize];
+- (void)setupTableViewController{
+    [super setupTableViewController];
     self.cellStyle = UITableViewCellStyleDefault;
 }
 
@@ -55,6 +55,11 @@
     }else{
         [cell setAccessoryType:UITableViewCellAccessoryNone];
     }
+}
+
+- (void)initializeCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath reuseIdentifier:(NSString *)reuseIdentifier{
+    cell.textLabel.adjustsFontSizeToFitWidth = YES;
+    cell.textLabel.minimumFontSize = 12.0f;
 }
 
 @end

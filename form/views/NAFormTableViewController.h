@@ -10,16 +10,22 @@
 
 #import "NAFormCell.h"
 
-typedef enum FormTableSelectActionType : NSUInteger {
-    FormTableSelectActionTypeOpenSelectTable,
-    FormTableSelectActionTypeOpenMultipleSelectTable,
-} FormTableSelectActionType;
+@protocol NAFormTableViewControllerDelegate;
 
-@interface NAFormTableViewController : NAArrayTableViewController <NAFormCellDelegate>
-
+@interface NAFormTableViewController : NAArrayTableViewController <NAFormCellDelegate, NAFormTableViewControllerDelegate>
 
 - (BOOL)enableNextFocus;
 
 - (void)changeFormValue:(NAFormValue *)formValue newValue:(id)newValue;
+
+- (void)closeCustomModelViewController:(UIViewController *)controller formValue:(NAFormValue *)formValue;
+
+@property (strong, nonatomic) UIViewController *customModelViewController;
+
+@end
+
+@protocol NAFormTableViewControllerDelegate <NSObject>
+
+- (void)closeCustomModelViewController:(UIViewController *)controller formValue:(NAFormValue *)formValue;
 
 @end
